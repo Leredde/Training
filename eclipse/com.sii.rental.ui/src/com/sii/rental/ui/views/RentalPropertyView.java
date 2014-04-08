@@ -3,15 +3,23 @@
  */
 package com.sii.rental.ui.views;
 
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Rental;
 import com.sii.rental.core.RentalCoreActivator;
+
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.RowLayout;
 
@@ -19,11 +27,23 @@ import org.eclipse.swt.layout.RowLayout;
  * @author lleredde
  *
  */
-public class RentalPropertyView extends ViewPart {
+public class RentalPropertyView extends ViewPart implements ISelectionListener {
 
 	private Group infoGroup;
 	private Label infoLabel;
 	private Label customerLabel;
+	
+	@Override
+	public void init(IViewSite site) throws PartInitException {
+		super.init(site);
+		site.getPage().addSelectionListener(this);
+	}
+	
+	@Override
+	public void dispose() {
+		getSite().getPage().removeSelectionListener(this);
+		super.dispose();
+	}
 	
 	/**
 	 * 
@@ -41,18 +61,16 @@ public class RentalPropertyView extends ViewPart {
 		// TODO Auto-generated method stub
 		infoGroup = new Group(parent,SWT.NONE);
 		infoGroup.setText("Informations");
-		infoGroup.setLayout(null);
+		infoGroup.setLayout(new GridLayout(2, false));
 		
 		
 		infoLabel = new Label(infoGroup, SWT.NONE);
-		infoLabel.setBounds(6, 18, 102, 15);
+		new Label(infoGroup, SWT.NONE);
 		
 		Label rentToLabel = new Label(infoGroup, SWT.NONE);
-		rentToLabel.setBounds(6, 39, 46, 15);
-		rentToLabel.setText("is rent to");
+		rentToLabel.setText("Currently rent to :");
 		
 		customerLabel = new Label(infoGroup, SWT.NONE);
-		customerLabel.setBounds(67, 39, 64, 15);
 		
 		Group grpDate = new Group(parent, SWT.NONE);
 		grpDate.setText("Date");
@@ -73,6 +91,20 @@ public class RentalPropertyView extends ViewPart {
 	public void setRental(Rental r) {
 		infoLabel.setText(r.getRentedObject().getName());
 		customerLabel.setText(r.getCustomer().getDisplayName());
+	}
+
+	@Override
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		if(selection instanceof IStructuredSelection) {
+			Object selected = ((StructuredSelection) selection).getFirstElement();
+			
+			if (selected instanceof Rental) {
+				setRental((Rental)selected);
+			}
+		}
+			
+		
+		
 	}
 
 }

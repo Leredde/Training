@@ -29,7 +29,7 @@ public class AgencyView extends ViewPart {
 		treeViewer.setContentProvider(provider);
 		treeViewer.setLabelProvider(provider);
 		treeViewer.setInput(agencies);
-	
+		getSite().setSelectionProvider(treeViewer);	
 	}
 
 	@Override
