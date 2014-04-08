@@ -61,7 +61,7 @@ public class AgencyView extends ViewPart {
 
 		DragSource source = new DragSource(viewer.getControl(), DND.DROP_MOVE | DND.DROP_COPY);
 		source.setTransfer(new Transfer[]{TextTransfer.getInstance(), RTFTransfer.getInstance(), URLTransfer.getInstance()});
-
+		//source.setDragSourceEffect();
 
 		source.addDragListener(new DragSourceAdapter()
 		{			
