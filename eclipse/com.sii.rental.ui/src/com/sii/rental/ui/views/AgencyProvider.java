@@ -53,7 +53,12 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 	@Override
 	public boolean hasChildren(Object element) {
 		// TODO Auto-generated method stub
-		return true;// fleches pour rien
+		// DIRTY
+		if (element instanceof RentalAgency) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public String getText(Object element)
