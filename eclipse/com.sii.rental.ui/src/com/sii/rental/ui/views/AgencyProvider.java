@@ -2,9 +2,13 @@ package com.sii.rental.ui.views;
 
 import java.util.Collection;
 
+import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.widgets.Display;
 
 import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
@@ -13,7 +17,7 @@ import com.opcoach.training.rental.RentalObject;
 import com.sii.rental.ui.RentalUIConstants;
 
 
-public class AgencyProvider extends LabelProvider implements ITreeContentProvider {
+public class AgencyProvider extends LabelProvider implements ITreeContentProvider, IColorProvider {
 
 	private class Node {
 		String label;
@@ -114,6 +118,29 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 			
 		
 		return result;
+	}
+
+	@Override
+	public Color getForeground(Object element) {
+		// TODO Auto-generated method stub
+		if (element instanceof Customer)
+		{
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN);
+		} else if (element instanceof Rental)
+		{
+		//	return new Color(Display.getCurrent(), 20, 200, 255);
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE);
+		} else if (element instanceof RentalObject) {
+
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED);
+		}
+		return null;
+	}
+
+	@Override
+	public Color getBackground(Object element) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
