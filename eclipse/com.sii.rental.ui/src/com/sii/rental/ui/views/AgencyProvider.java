@@ -125,14 +125,13 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 		// TODO Auto-generated method stub
 		if (element instanceof Customer)
 		{
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN);
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE);
 		} else if (element instanceof Rental)
 		{
 		//	return new Color(Display.getCurrent(), 20, 200, 255);
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE);
-		} else if (element instanceof RentalObject) {
-
 			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED);
+		} else if (element instanceof RentalObject) {
+			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN);
 		}
 		return null;
 	}
