@@ -1,23 +1,33 @@
 package com.sii.rental.ui;
 
+import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class RentalUIActivator extends AbstractUIPlugin {
+
+	@Override
+	protected void initializeImageRegistry(ImageRegistry reg) {
+		// TODO Auto-generated method stub
+		//super.initializeImageRegistry(reg);
+		reg.put(RentalUIConstants.IMG_CUSTOMER, imageDescriptorFromPlugin(PLUGIN_ID, RentalUIConstants.IMG_CUSTOMER));
+		reg.put(RentalUIConstants.IMG_OBJECT, imageDescriptorFromPlugin(PLUGIN_ID, RentalUIConstants.IMG_OBJECT));
+		reg.put(RentalUIConstants.IMG_RENTAL, imageDescriptorFromPlugin(PLUGIN_ID, RentalUIConstants.IMG_RENTAL));
+	}
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.sii.rental.ui"; //$NON-NLS-1$
 
 	// The shared instance
-	private static Activator plugin;
+	private static RentalUIActivator plugin;
 	
 	/**
 	 * The constructor
 	 */
-	public Activator() {
+	public RentalUIActivator() {
 	}
 
 	/*
@@ -43,7 +53,7 @@ public class Activator extends AbstractUIPlugin {
 	 *
 	 * @return the shared instance
 	 */
-	public static Activator getDefault() {
+	public static RentalUIActivator getDefault() {
 		return plugin;
 	}
 

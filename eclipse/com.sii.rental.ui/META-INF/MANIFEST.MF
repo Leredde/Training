@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Ui
 Bundle-SymbolicName: com.sii.rental.ui;singleton:=true
 Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: com.sii.rental.ui.Activator
+Bundle-Activator: com.sii.rental.ui.RentalUIActivator
 Bundle-Vendor: SII
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
