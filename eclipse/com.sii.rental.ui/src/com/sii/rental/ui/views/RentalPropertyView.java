@@ -7,6 +7,14 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DragSource;
+import org.eclipse.swt.dnd.DragSourceAdapter;
+import org.eclipse.swt.dnd.DragSourceEvent;
+import org.eclipse.swt.dnd.RTFTransfer;
+import org.eclipse.swt.dnd.TextTransfer;
+import org.eclipse.swt.dnd.Transfer;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
@@ -19,9 +27,6 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Rental;
 import com.sii.rental.core.RentalCoreActivator;
-
-import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.RowLayout;
 
 /**
  * @author lleredde
@@ -58,7 +63,7 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout(SWT.VERTICAL));
-		// TODO Auto-generated method stub
+		
 		infoGroup = new Group(parent,SWT.NONE);
 		infoGroup.setText("Informations");
 		infoGroup.setLayout(new GridLayout(2, false));
@@ -77,8 +82,30 @@ public class RentalPropertyView extends ViewPart implements ISelectionListener {
 		
 		Rental r = RentalCoreActivator.getAgency().getRentals().get(0);
 		setRental(r);
+		setLabelAsDragSource(infoLabel);
 	}
 	
+	private void setLabelAsDragSource(final Label label) {
+		DragSource source = new DragSource(label, DND.DROP_MOVE | DND.DROP_COPY);
+		
+		source.setTransfer(new Transfer[]{TextTransfer.getInstance(), RTFTransfer.getInstance()});
+		
+		source.addDragListener(new DragSourceAdapter()
+		{
+			public void dragSetData(DragSourceEvent event)
+			{
+				if(RTFTransfer.getInstance().isSupportedType(event.dataType))
+				{
+					event.data = "{\\rtf1\\b\\i " + label.getText() + "}";
+				}
+				else if(TextTransfer.getInstance().isSupportedType(event.dataType))
+				{
+					event.data = label.getText();
+				}
+			}
+		});		
+	}
+
 	/* (non-Javadoc)
 	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
 	 */
