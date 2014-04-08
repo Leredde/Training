@@ -13,9 +13,17 @@ public class RentalUIActivator extends AbstractUIPlugin {
 	protected void initializeImageRegistry(ImageRegistry reg) {
 		// TODO Auto-generated method stub
 		//super.initializeImageRegistry(reg);
+		// Eclipse 3 pur
 		reg.put(RentalUIConstants.IMG_CUSTOMER, imageDescriptorFromPlugin(PLUGIN_ID, RentalUIConstants.IMG_CUSTOMER));
 		reg.put(RentalUIConstants.IMG_OBJECT, imageDescriptorFromPlugin(PLUGIN_ID, RentalUIConstants.IMG_OBJECT));
 		reg.put(RentalUIConstants.IMG_RENTAL, imageDescriptorFromPlugin(PLUGIN_ID, RentalUIConstants.IMG_RENTAL));
+		
+		// Eclipse 4
+		/*
+		Bundle b = Platform.getBundle(PLUGIN_ID); // do this
+		b = FrameworkUtil.getBundle(this.getClass()); // or that
+		// And then
+		reg.put(RentalUIConstants.IMG_CUSTOMER, ImageDescriptor.createFromURL(... */
 	}
 
 	// The plug-in ID
