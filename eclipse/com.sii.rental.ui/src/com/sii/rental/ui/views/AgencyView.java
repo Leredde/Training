@@ -29,7 +29,12 @@ public class AgencyView extends ViewPart {
 		treeViewer.setContentProvider(provider);
 		treeViewer.setLabelProvider(provider);
 		treeViewer.setInput(agencies);
+		
+		// treeViewer is already a selection provider
 		getSite().setSelectionProvider(treeViewer);	
+		
+		// To handle different providers, become a provider by implementing
+		// ISelectionProvider and maintaining a focus info and returning it on getSelection
 	}
 
 	@Override
