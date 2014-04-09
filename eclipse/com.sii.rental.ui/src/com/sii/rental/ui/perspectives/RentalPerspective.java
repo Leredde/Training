@@ -14,8 +14,8 @@ public class RentalPerspective implements IPerspectiveFactory {
 		addFastViews(layout);
 		addViewShortcuts(layout);
 		addPerspectiveShortcuts(layout);
-		layout.addView("com.sii.rental.ui.rentalproperty", IPageLayout.TOP, 0.4f, IPageLayout.ID_EDITOR_AREA);
-		layout.addView("com.sii.rental.ui.agency", IPageLayout.TOP, 0.6f, "com.sii.rental.ui.rentalproperty");
+		layout.addView("com.sii.rental.ui.rentalproperty", IPageLayout.TOP, 0.7f, IPageLayout.ID_EDITOR_AREA);
+		layout.addView("com.sii.rental.ui.agency", IPageLayout.LEFT, 0.3f, "com.sii.rental.ui.rentalproperty");
 	}
 
 	/**
