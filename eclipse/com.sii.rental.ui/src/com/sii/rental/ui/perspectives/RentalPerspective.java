@@ -1,4 +1,4 @@
-package com.sii.rental.ui.views;
+package com.sii.rental.ui.perspectives;
 
 import org.eclipse.ui.IPageLayout;
 import org.eclipse.ui.IPerspectiveFactory;

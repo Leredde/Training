@@ -2,6 +2,10 @@ package com.sii.rental.ui.views;
 
 import java.util.Collection;
 
+import org.eclipse.core.internal.runtime.Activator;
+import org.eclipse.jface.resource.ColorRegistry;
+import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.resource.StringConverter;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -22,10 +26,45 @@ import com.sii.rental.ui.RentalUIActivator;
 import com.sii.rental.ui.RentalUIConstants;
 
 
-public class AgencyProvider extends LabelProvider implements ITreeContentProvider, IColorProvider {
+public class AgencyProvider extends LabelProvider implements ITreeContentProvider, IColorProvider, RentalUIConstants {
 
 
 	private class Node {
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result
+					+ ((agency == null) ? 0 : agency.hashCode());
+			result = prime * result + ((label == null) ? 0 : label.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Node other = (Node) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (agency == null) {
+				if (other.agency != null)
+					return false;
+			} else if (!agency.equals(other.agency))
+				return false;
+			if (label == null) {
+				if (other.label != null)
+					return false;
+			} else if (!label.equals(other.label))
+				return false;
+			return true;
+		}
+
 		String label;
 		public String getLabel() {
 			return label;
@@ -44,11 +83,11 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 		}
 		
 		public Object[] getChildren() {
-			if (label == RentalUIConstants.CUSTOMER_NODE) {
+			if (label == RentalUIConstants.NODE_CUSTOMER) {
 				return agency.getCustomers().toArray();
-			} else if (label == RentalUIConstants.RENTAL_NODE) {
+			} else if (label == RentalUIConstants.NODE_RENTAL) {
 				return agency.getRentals().toArray();
-			} else if (label == RentalUIConstants.OBJECT_NODE) {
+			} else if (label == RentalUIConstants.NODE_OBJECT) {
 				return agency.getObjectsToRent().toArray();
 			} else {
 				return null;
@@ -57,15 +96,19 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 		
 		public Image getImage()
 		{
-			if (label == RentalUIConstants.CUSTOMER_NODE) {
+			if (label == RentalUIConstants.NODE_CUSTOMER) {
 				return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIConstants.IMG_CUSTOMER);
-			} else if (label == RentalUIConstants.RENTAL_NODE) {
+			} else if (label == RentalUIConstants.NODE_RENTAL) {
 				return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIConstants.IMG_RENTAL);
-			} else if (label == RentalUIConstants.OBJECT_NODE) {
+			} else if (label == RentalUIConstants.NODE_OBJECT) {
 				return RentalUIActivator.getDefault().getImageRegistry().get(RentalUIConstants.IMG_OBJECT);
 			} else {
 				return null;
 			}
+		}
+
+		private AgencyProvider getOuterType() {
+			return AgencyProvider.this;
 		}
 	}
 
@@ -102,9 +145,9 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 		if (parentElement instanceof RentalAgency)
 		{
 			Node[] nodes = {
-					new Node(RentalUIConstants.CUSTOMER_NODE, (RentalAgency)parentElement),
-					new Node(RentalUIConstants.RENTAL_NODE, (RentalAgency)parentElement),
-					new Node(RentalUIConstants.OBJECT_NODE, (RentalAgency)parentElement)
+					new Node(RentalUIConstants.NODE_CUSTOMER, (RentalAgency)parentElement),
+					new Node(RentalUIConstants.NODE_RENTAL, (RentalAgency)parentElement),
+					new Node(RentalUIConstants.NODE_OBJECT, (RentalAgency)parentElement)
 			};
 			
 			return nodes;
@@ -149,16 +192,19 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getForeground(Object element) {
-		// TODO Auto-generated method stub
 		if (element instanceof Customer)
 		{
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_BLUE);
-		} else if (element instanceof Rental)
+			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(COLOR_CUSTOMER));
+		}
+		else if (element instanceof Rental)
 		{
 		//	return new Color(Display.getCurrent(), 20, 200, 255);
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED);
-		} else if (element instanceof RentalObject) {
-			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GREEN);
+			// return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED);
+			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(COLOR_RENTAL));
+		} 
+		else if (element instanceof RentalObject) 
+		{
+			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(COLOR_RENTOBJECT));
 		}
 		return null;
 	}
@@ -167,6 +213,19 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 	public Color getBackground(Object element) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	private Color getAColor(String rgbKey)
+	{
+		ColorRegistry colorRegistry = JFaceResources.getColorRegistry();
+		Color color = colorRegistry.get(rgbKey);
+		if (color == null) 
+		{
+			colorRegistry.put(rgbKey,StringConverter.asRGB(rgbKey));
+			color = colorRegistry.get(rgbKey);
+		}
+		
+		return color;
 	}
 
 }

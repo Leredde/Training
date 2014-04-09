@@ -25,17 +25,37 @@
    <extension
          point="org.eclipse.ui.perspectives">
       <perspective
-            class="com.sii.rental.ui.views.RentalPerspective"
+            class="com.sii.rental.ui.perspectives.RentalPerspective"
             icon="icons/Agency.png"
             id="com.sii.rental.ui.rentalperspective"
             name="Rental">
       </perspective>
       <perspective
-            class="com.sii.rental.ui.views.RentalPerspectiveSA"
+            class="com.sii.rental.ui.perspectives.RentalPerspectiveSA"
             icon="icons/Agency.png"
             id="com.sii.rental.ui.rentalperspectivesa"
             name="RentalSA">
       </perspective>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.sii.rental.ui.preferences.RentalPreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.sii.rental.ui.preferences.RentalPreferencePage"
+            id="com.sii.rental.ui.rentalpreferencepage"
+            name="Rental">
+      </page>
+      <page
+            category="com.sii.rental.ui.rentalpreferencepage"
+            class="com.sii.rental.ui.preferences.ColorPreferencePage"
+            id="com.sii.rental.ui.colorpreferencepage"
+            name="Colors">
+      </page>
    </extension>
 
 </plugin>

@@ -3,6 +3,10 @@ package com.sii.rental.ui.views;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
+import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -16,6 +20,8 @@ import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.URLTransfer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IViewSite;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
 
 import com.opcoach.training.rental.Customer;
@@ -25,13 +31,25 @@ import com.sii.rental.core.RentalCoreActivator;
 import com.sii.rental.ui.RentalUIActivator;
 import com.sii.rental.ui.RentalUIConstants;
 
-public class AgencyView extends ViewPart {
+public class AgencyView extends ViewPart implements IPropertyChangeListener {
 
 	AgencyProvider provider;
 	TreeViewer treeViewer;
 
 	public AgencyView() {
 		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public void init(IViewSite site) throws PartInitException {		
+		super.init(site);
+		RentalUIActivator.getDefault().getPreferenceStore().addPropertyChangeListener(this);
+	}
+	
+	@Override
+	public void dispose() {
+		RentalUIActivator.getDefault().getPreferenceStore().removePropertyChangeListener(this);
+		super.dispose();
 	}
 
 	@Override
@@ -116,6 +134,11 @@ public class AgencyView extends ViewPart {
 	public void setFocus() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent event) {
+		treeViewer.refresh();
 	}
 
 }
