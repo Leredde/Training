@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.IPreferenceChangeListener;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences.PreferenceChangeEvent;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.IPropertyChangeListener;
 import org.eclipse.jface.util.PropertyChangeEvent;
 import org.eclipse.jface.viewers.ISelection;
@@ -20,6 +21,7 @@ import org.eclipse.swt.dnd.TextTransfer;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.URLTransfer;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IViewSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.part.ViewPart;
@@ -71,6 +73,12 @@ public class AgencyView extends ViewPart implements IPropertyChangeListener {
 
 
 		setTreeViewerAsDragSource(treeViewer);
+		
+		
+		MenuManager menuManager = new MenuManager();
+		Menu menu = menuManager.createContextMenu(treeViewer.getControl());
+		treeViewer.getControl().setMenu(menu);
+		getSite().registerContextMenu(menuManager, treeViewer);
 	}
 
 

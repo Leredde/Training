@@ -57,5 +57,51 @@
             name="Colors">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="com.sii.rental.ui.menus.sampleMenu"
+               label="Rental">
+            <command
+                  commandId="com.sii.rental.ui.commands.sampleCommand"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.views.ResourceNavigator?after=additions">
+         <menu
+               id="com.sii.rental.ui.menus.rentalMenu"
+               label="Rental">
+            <command
+                  commandId="com.sii.rental.ui.commands.sampleCommand"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:com.sii.rental.ui.agency?after=additions">
+         <menu
+               id="com.sii.rental.ui.menus.rentalMenu"
+               label="Rental">
+            <command
+                  commandId="com.sii.rental.ui.commands.sampleCommand"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.sii.rental.ui.handlers.SampleHandler"
+            id="com.sii.rental.ui.commands.sampleCommand"
+            name="Sample Command">
+      </command>
+   </extension>
 
 </plugin>
