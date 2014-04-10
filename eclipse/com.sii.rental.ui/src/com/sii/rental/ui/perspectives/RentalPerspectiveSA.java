@@ -5,6 +5,8 @@ import org.eclipse.ui.IPerspectiveFactory;
 
 public class RentalPerspectiveSA implements IPerspectiveFactory {
 
+	public static final String ID = "com.sii.rental.ui.rentalperspectivesa";
+	
 	/**
 	 * Creates the initial layout for a page.
 	 */

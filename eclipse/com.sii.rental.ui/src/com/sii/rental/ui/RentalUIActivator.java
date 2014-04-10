@@ -1,5 +1,8 @@
 package com.sii.rental.ui;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
@@ -44,6 +47,16 @@ public class RentalUIActivator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		
+		
+		IExtensionRegistry reg = Platform.getExtensionRegistry();
+		for (IConfigurationElement e : reg.getConfigurationElementsFor("org.eclipse.ui.views"))
+		{
+			if("view".equals(e.getName()))
+			{
+				System.out.println("Plugin : " + e.getNamespaceIdentifier() + "\t\tVue : " + e.getAttribute("name") );
+			}
+		}
 	}
 
 	/*
