@@ -1,4 +1,4 @@
 Training
 ========
 
-Repository for code developped dring various personnal training sessions  
+Repository for code developped during various personnal training sessions  
