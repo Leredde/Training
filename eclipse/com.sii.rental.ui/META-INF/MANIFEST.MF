@@ -7,7 +7,7 @@ Bundle-Activator: com.sii.rental.ui.RentalUIActivator
 Bundle-Vendor: %Bundle-Vendor
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.sii.rental.core;bundle-version="1.0.0",
+ com.sii.rental.core,
  org.eclipse.emf.common;bundle-version="2.8.0",
  org.eclipse.emf.ecore;bundle-version="2.8.3"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6

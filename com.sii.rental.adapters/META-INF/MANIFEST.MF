@@ -6,6 +6,6 @@ Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sii.rental.adapters.RentalAdapterActivator
 Bundle-Vendor: SII
 Require-Bundle: org.eclipse.core.runtime,
- com.sii.rental.core;bundle-version="1.0.0"
+ com.sii.rental.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
