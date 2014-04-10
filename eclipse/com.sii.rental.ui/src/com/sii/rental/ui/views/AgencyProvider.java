@@ -1,6 +1,7 @@
 package com.sii.rental.ui.views;
 
 import java.util.Collection;
+import java.util.Map;
 
 import org.eclipse.core.internal.runtime.Activator;
 import org.eclipse.jface.resource.ColorRegistry;
@@ -22,6 +23,7 @@ import com.opcoach.training.rental.Customer;
 import com.opcoach.training.rental.Rental;
 import com.opcoach.training.rental.RentalAgency;
 import com.opcoach.training.rental.RentalObject;
+import com.sii.rental.ui.Palette;
 import com.sii.rental.ui.RentalUIActivator;
 import com.sii.rental.ui.RentalUIConstants;
 
@@ -192,26 +194,28 @@ public class AgencyProvider extends LabelProvider implements ITreeContentProvide
 
 	@Override
 	public Color getForeground(Object element) {
-		if (element instanceof Customer)
+		
+		String id = RentalUIActivator.getDefault().getPreferenceStore().getString(COMBO_PALETTE_PREFERENCE);
+		Map<String, Palette> palettes = RentalUIActivator.getDefault().getPaletteManager();
+		Palette palette = palettes.get(id);
+		
+		if (palette != null)
 		{
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(COLOR_CUSTOMER));
-		}
-		else if (element instanceof Rental)
-		{
-		//	return new Color(Display.getCurrent(), 20, 200, 255);
-			// return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_RED);
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(COLOR_RENTAL));
-		} 
-		else if (element instanceof RentalObject) 
-		{
-			return getAColor(RentalUIActivator.getDefault().getPreferenceStore().getString(COLOR_RENTOBJECT));
+			return palette.getColorProvider().getForeground(element);
 		}
 		return null;
 	}
 
 	@Override
 	public Color getBackground(Object element) {
-		// TODO Auto-generated method stub
+		String id = RentalUIActivator.getDefault().getPreferenceStore().getString(COMBO_PALETTE_PREFERENCE);
+		Map<String, Palette> palettes = RentalUIActivator.getDefault().getPaletteManager();
+		Palette palette = palettes.get(id);
+		
+		if (palette != null)
+		{
+			return palette.getColorProvider().getBackground(element);			
+		}
 		return null;
 	}
 	

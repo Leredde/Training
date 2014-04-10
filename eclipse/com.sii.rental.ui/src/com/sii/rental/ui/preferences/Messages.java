@@ -8,6 +8,7 @@ public class Messages extends NLS {
 	public static String ColorPreferencePage_1;
 	public static String ColorPreferencePage_2;
 	public static String ColorPreferencePage_3;
+	public static String ColorPreferencePage_other_labelText;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

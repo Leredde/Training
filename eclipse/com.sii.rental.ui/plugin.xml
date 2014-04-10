@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension-point id="com.sii.ui.rental.palette" name="Palette" schema="schema/rentalPalette.exsd"/>
    <extension
          point="org.eclipse.ui.views">
       <category
@@ -61,7 +62,13 @@
             category="com.sii.rental.ui.rentalpreferencepage"
             class="com.sii.rental.ui.preferences.ColorPreferencePage"
             id="com.sii.rental.ui.colorpreferencepage"
-            name="%page.name.0">
+            name="Palette">
+      </page>
+      <page
+            category="com.sii.rental.ui.rentalpreferencepage"
+            class="com.sii.rental.ui.preferences.DefaultColorPreferencePage"
+            id="com.sii.rental.ui.defaultColorPreferencePage"
+            name="Default Colors">
       </page>
    </extension>
    <extension
@@ -109,6 +116,19 @@
             id="com.sii.rental.ui.commands.sampleCommand"
             name="%command.name">
       </command>
+   </extension>
+   <extension
+         point="com.sii.ui.rental.palette">
+      <palette
+            class="com.sii.rental.ui.DefaultPalette"
+            id="com.sii.rental.ui.defaultPalette"
+            name="Default">
+      </palette>
+      <palette
+            class="com.sii.rental.ui.JaunePalette"
+            id="com.sii.rental.ui.jaune"
+            name="Yellow">
+      </palette>
    </extension>
 
 </plugin>

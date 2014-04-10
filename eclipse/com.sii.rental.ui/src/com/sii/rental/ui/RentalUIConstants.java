@@ -16,4 +16,6 @@ public interface RentalUIConstants {
 	public static final String COLOR_RENTOBJECT = "COLOR_RENTOBJECT";
 	public static final String COLOR_RENTAL = "COLOR_RENTAL";
 	public static final String COLOR_CUSTOMER = "COLOR_CUSTOMER";
+	
+	public static final String COMBO_PALETTE_PREFERENCE = "preferenceColorPageCombo";
 }
