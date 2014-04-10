@@ -5,10 +5,11 @@ Bundle-SymbolicName: com.sii.rental.rcp;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: com.sii.rental.rcp.Activator
 Bundle-Vendor: SII
-Require-Bundle: org.eclipse.ui,
+Require-Bundle: org.eclipse.ui;resolution:=optional,
  org.eclipse.core.runtime,
  com.sii.rental.ui,
  com.sii.rental.adapters,
- com.sii.rental.ui.cmd
+ com.sii.rental.ui.cmd;resolution:=optional,
+ org.eclipse.rap.ui;bundle-version="2.2.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
