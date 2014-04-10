@@ -7,8 +7,8 @@ Bundle-Activator: com.sii.rental.rcp.Activator
 Bundle-Vendor: SII
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- com.sii.rental.ui;bundle-version="1.0.0",
- com.sii.rental.adapters;bundle-version="1.0.0",
- com.sii.rental.ui.cmd;bundle-version="1.0.0"
+ com.sii.rental.ui,
+ com.sii.rental.adapters,
+ com.sii.rental.ui.cmd
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
