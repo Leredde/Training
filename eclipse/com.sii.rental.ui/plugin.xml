@@ -5,20 +5,27 @@
          point="org.eclipse.ui.views">
       <category
             id="com.sii.rental.ui.rental"
-            name="Rental">
+            name="%category.name">
       </category>
       <view
             category="com.sii.rental.ui.rental"
             class="com.sii.rental.ui.views.RentalPropertyView"
             id="com.sii.rental.ui.rentalproperty"
-            name="RentalPropertyView"
+            name="%view.name"
             restorable="true">
       </view>
       <view
             category="com.sii.rental.ui.rental"
             class="com.sii.rental.ui.views.AgencyView"
             id="com.sii.rental.ui.agency"
-            name="AgencyView"
+            name="%view.name.0"
+            restorable="true">
+      </view>
+      <view
+            category="com.sii.rental.ui.rental"
+            class="com.sii.rental.ui.views.CustomerView"
+            id="com.sii.rental.ui.customerView"
+            name="CustomerView"
             restorable="true">
       </view>
    </extension>
@@ -28,13 +35,13 @@
             class="com.sii.rental.ui.perspectives.RentalPerspective"
             icon="icons/Agency.png"
             id="com.sii.rental.ui.rentalperspective"
-            name="Rental">
+            name="%perspective.name">
       </perspective>
       <perspective
             class="com.sii.rental.ui.perspectives.RentalPerspectiveSA"
             icon="icons/Agency.png"
             id="com.sii.rental.ui.rentalperspectivesa"
-            name="RentalSA">
+            name="%perspective.name.0">
       </perspective>
    </extension>
    <extension
@@ -48,13 +55,13 @@
       <page
             class="com.sii.rental.ui.preferences.RentalPreferencePage"
             id="com.sii.rental.ui.rentalpreferencepage"
-            name="Rental">
+            name="%page.name">
       </page>
       <page
             category="com.sii.rental.ui.rentalpreferencepage"
             class="com.sii.rental.ui.preferences.ColorPreferencePage"
             id="com.sii.rental.ui.colorpreferencepage"
-            name="Colors">
+            name="%page.name.0">
       </page>
    </extension>
    <extension
@@ -63,7 +70,7 @@
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
                id="com.sii.rental.ui.menus.sampleMenu"
-               label="Rental">
+               label="%menu.label">
             <command
                   commandId="com.sii.rental.ui.commands.sampleCommand"
                   style="push">
@@ -75,7 +82,7 @@
             locationURI="menu:org.eclipse.ui.views.ResourceNavigator?after=additions">
          <menu
                id="com.sii.rental.ui.menus.rentalMenu"
-               label="Rental">
+               label="%menu.label.0">
             <command
                   commandId="com.sii.rental.ui.commands.sampleCommand"
                   style="push">
@@ -87,7 +94,7 @@
             locationURI="popup:com.sii.rental.ui.agency?after=additions">
          <menu
                id="com.sii.rental.ui.menus.rentalMenu"
-               label="Rental">
+               label="%menu.label.1">
             <command
                   commandId="com.sii.rental.ui.commands.sampleCommand"
                   style="push">
@@ -100,7 +107,7 @@
       <command
             defaultHandler="com.sii.rental.ui.handlers.SampleHandler"
             id="com.sii.rental.ui.commands.sampleCommand"
-            name="Sample Command">
+            name="%command.name">
       </command>
    </extension>
 

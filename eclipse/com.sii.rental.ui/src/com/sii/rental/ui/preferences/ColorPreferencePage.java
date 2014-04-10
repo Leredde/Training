@@ -15,7 +15,7 @@ public class ColorPreferencePage extends FieldEditorPreferencePage implements
 	public ColorPreferencePage() {
 		super(GRID);
 		setPreferenceStore(RentalUIActivator.getDefault().getPreferenceStore());
-		setDescription("Color preferences for Rental plugin");
+		setDescription(Messages.ColorPreferencePage_0);
 	}
 
 	public ColorPreferencePage(int style) {
@@ -41,9 +41,9 @@ public class ColorPreferencePage extends FieldEditorPreferencePage implements
 
 	@Override
 	protected void createFieldEditors() {
-		addField(new ColorFieldEditor(COLOR_CUSTOMER, "Customer :", getFieldEditorParent()));
-		addField(new ColorFieldEditor(COLOR_RENTAL, "Rental :", getFieldEditorParent()));
-		addField(new ColorFieldEditor(COLOR_RENTOBJECT, "Rent Device :", getFieldEditorParent()));
+		addField(new ColorFieldEditor(COLOR_CUSTOMER, Messages.ColorPreferencePage_1, getFieldEditorParent()));
+		addField(new ColorFieldEditor(COLOR_RENTAL, Messages.ColorPreferencePage_2, getFieldEditorParent()));
+		addField(new ColorFieldEditor(COLOR_RENTOBJECT, Messages.ColorPreferencePage_3, getFieldEditorParent()));
 	}
 
 }
