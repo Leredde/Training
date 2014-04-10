@@ -5,9 +5,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 
-public class JaunePalette implements IColorProvider {
+public class YellowPalette implements IColorProvider {
 
-	public JaunePalette() {
+	public YellowPalette() {
 		// TODO Auto-generated constructor stub
 	}
 

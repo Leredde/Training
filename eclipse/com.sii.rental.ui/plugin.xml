@@ -125,7 +125,7 @@
             name="Default">
       </palette>
       <palette
-            class="com.sii.rental.ui.JaunePalette"
+            class="com.sii.rental.ui.YellowPalette"
             id="com.sii.rental.ui.jaune"
             name="Yellow">
       </palette>
