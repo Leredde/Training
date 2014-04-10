@@ -10,6 +10,6 @@ Require-Bundle: org.eclipse.ui;resolution:=optional,
  com.sii.rental.ui,
  com.sii.rental.adapters,
  com.sii.rental.ui.cmd;resolution:=optional,
- org.eclipse.rap.ui;bundle-version="2.2.0"
+ org.eclipse.rap.ui;bundle-version="2.2.0";resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
